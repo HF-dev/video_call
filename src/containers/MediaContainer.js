@@ -85,7 +85,7 @@ export default class MediaBridge extends React.Component {
   init() {
     // wait for local media to be ready
     const attachMediaIfReady = () => {
-      this.dc = this.pc.createDataChannel('chat');
+      // this.dc = this.pc.createDataChannel('chat');
       this.setupDataHandlers();
       console.log('attachMediaIfReady')
       this.pc.createOffer()
