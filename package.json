@@ -8,7 +8,7 @@
     "url": "https://github.com/dondido/webrtc-video-room.git"
   },
   "scripts": {
-    "dev" : "webpack --progress",
+    "dev": "webpack --progress",
     "prodB": "webpack -p --progress",
     "start": "node server.js",
     "prod": "NODE_ENV=production node server.js",

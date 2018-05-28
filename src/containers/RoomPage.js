@@ -13,7 +13,9 @@ class RoomPage extends React.Component {
     audio: true,
     video: true
   }).catch(e => alert('getUserMedia() error: ' + e.name))
-  socket = io.connect()
+  socket = io.connect({
+    path: document.getElementById("mybase").href 
+  })
   componentWillMount() {
     this.props.addRoom();
   }
