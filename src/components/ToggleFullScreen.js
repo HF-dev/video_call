@@ -1,16 +1,16 @@
 const el = document.documentElement;
-document.fullscreenEnabled = document.fullscreenEnabled ||
-document.webkitFullscreenEnabled ||
-document.mozFullScreenEnabled ||
-document.msFullscreenEnabled;
-document.exitFullscreen = document.exitFullscreen ||
-document.webkitExitFullscreen ||
-document.mozCancelFullScreen ||
-document.msExitFullscreen;
-el.requestFullscreen = el.requestFullscreen ||
-el.webkitRequestFullscreen ||
-el.mozRequestFullScreen ||
-el.msRequestFullScreen;
+// document.fullscreenEnabled = document.fullscreenEnabled ||
+// document.webkitFullscreenEnabled ||
+// document.mozFullScreenEnabled ||
+// document.msFullscreenEnabled;
+// document.exitFullscreen = document.exitFullscreen ||
+// document.webkitExitFullscreen ||
+// document.mozCancelFullScreen ||
+// document.msExitFullscreen;
+// el.requestFullscreen = el.requestFullscreen ||
+// el.webkitRequestFullscreen ||
+// el.mozRequestFullScreen ||
+// el.msRequestFullScreen;
 const ToggleFullScreen = () => {
   // full-screen available?
   if (document.fullscreenEnabled) {
