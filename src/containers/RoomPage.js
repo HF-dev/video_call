@@ -15,7 +15,6 @@ class RoomPage extends React.Component {
     video: true
   }).catch(e => alert('getUserMedia() error: ' + e.name))
 
-  path = 
 
   socket = io.connect({
     path: "/" + document.getElementById("mybase").href.split("/").slice(3 , 100).join("/") + "socket.io/"
