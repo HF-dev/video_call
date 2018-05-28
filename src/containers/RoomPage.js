@@ -8,13 +8,17 @@ import io from 'socket.io-client'
 class RoomPage extends React.Component {
   constructor(props) {
     super(props);
+
   }
   getUserMedia = navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true
   }).catch(e => alert('getUserMedia() error: ' + e.name))
+
+  path = 
+
   socket = io.connect({
-    path: document.getElementById("mybase").href + "socket.io/"
+    path: "/" + document.getElementById("mybase").href.split("/").slice(3 , 100).join("/") + "socket.io/"
   })
   componentWillMount() {
     this.props.addRoom();
