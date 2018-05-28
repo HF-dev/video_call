@@ -30836,10 +30836,6 @@
 	  value: true
 	});
 
-	var _stringify = __webpack_require__(277);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
 	var _getPrototypeOf = __webpack_require__(352);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -30941,24 +30937,22 @@
 	    }
 	  }, {
 	    key: 'sendData',
-	    value: function sendData(msg) {
-	      this.dc.send((0, _stringify2.default)(msg));
-	    }
+	    value: function sendData(msg) {}
+	    // this.dc.send(JSON.stringify(msg))
+
 	    // Set up the data channel message handler
 
 	  }, {
 	    key: 'setupDataHandlers',
 	    value: function setupDataHandlers() {
-	      var _this3 = this;
-
-	      this.dc.onmessage = function (e) {
-	        var msg = JSON.parse(e.data);
-	        console.log('received message over data channel:' + msg);
-	      };
-	      this.dc.onclose = function () {
-	        _this3.remoteStream.getVideoTracks()[0].stop();
-	        console.log('The Data Channel is Closed');
-	      };
+	      // this.dc.onmessage = e => {
+	      //     var msg = JSON.parse(e.data);
+	      //     console.log('received message over data channel:' + msg);
+	      // };
+	      // this.dc.onclose = () => {
+	      //   this.remoteStream.getVideoTracks()[0].stop();
+	      //   console.log('The Data Channel is Closed');
+	      // };
 	    }
 	    // send the offer to a server to be forwarded to the other peer
 
@@ -30973,14 +30967,14 @@
 	  }, {
 	    key: 'init',
 	    value: function init() {
-	      var _this4 = this;
+	      var _this3 = this;
 
 	      // wait for local media to be ready
 	      var attachMediaIfReady = function attachMediaIfReady() {
 	        // this.dc = this.pc.createDataChannel('chat');
-	        _this4.setupDataHandlers();
+	        _this3.setupDataHandlers();
 	        console.log('attachMediaIfReady');
-	        _this4.pc.createOffer().then(_this4.setDescription).then(_this4.sendDescription).catch(_this4.handleError); // An error occurred, so handle the failure to connect
+	        _this3.pc.createOffer().then(_this3.setDescription).then(_this3.sendDescription).catch(_this3.handleError); // An error occurred, so handle the failure to connect
 	      };
 	      // set up the peer connection
 	      // this is one of Google's public STUN servers
@@ -30991,7 +30985,7 @@
 	      this.pc.onicecandidate = function (e) {
 	        console.log(e, 'onicecandidate');
 	        if (e.candidate) {
-	          _this4.props.socket.send({
+	          _this3.props.socket.send({
 	            type: 'candidate',
 	            mlineindex: e.candidate.sdpMLineIndex,
 	            candidate: e.candidate.candidate
@@ -31001,19 +30995,19 @@
 	      // when the other side added a media stream, show it on screen
 	      this.pc.onaddstream = function (e) {
 	        console.log('onaddstream', e);
-	        _this4.remoteStream = e.stream;
-	        _this4.remoteVideo.src = window.URL.createObjectURL(_this4.remoteStream);
-	        _this4.setState({ bridge: 'established' });
+	        _this3.remoteStream = e.stream;
+	        _this3.remoteVideo.src = window.URL.createObjectURL(_this3.remoteStream);
+	        _this3.setState({ bridge: 'established' });
 	      };
 	      this.pc.ondatachannel = function (e) {
 	        // data channel
-	        _this4.dc = e.channel;
-	        _this4.setupDataHandlers();
-	        _this4.sendData({
-	          peerMediaStream: {
-	            video: _this4.localStream.getVideoTracks()[0].enabled
-	          }
-	        });
+	        // this.dc = e.channel;
+	        // this.setupDataHandlers();
+	        // this.sendData({
+	        //   peerMediaStream: {
+	        //     video: this.localStream.getVideoTracks()[0].enabled
+	        //   }
+	        // });
 	        //sendData('hello');
 	      };
 	      // attach local media to the peer connection
@@ -31027,16 +31021,16 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this5 = this;
+	      var _this4 = this;
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'media-bridge ' + this.state.bridge },
 	        _react2.default.createElement('video', { className: 'remote-video', ref: function ref(_ref2) {
-	            return _this5.remoteVideo = _ref2;
+	            return _this4.remoteVideo = _ref2;
 	          }, autoPlay: true }),
 	        _react2.default.createElement('video', { className: 'local-video', ref: function ref(_ref3) {
-	            return _this5.localVideo = _ref3;
+	            return _this4.localVideo = _ref3;
 	          }, autoPlay: true, muted: true })
 	      );
 	    }

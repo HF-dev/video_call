@@ -59,18 +59,18 @@ export default class MediaBridge extends React.Component {
       }
   }
   sendData(msg) {
-    this.dc.send(JSON.stringify(msg))
+    // this.dc.send(JSON.stringify(msg))
   }
   // Set up the data channel message handler
   setupDataHandlers() {
-      this.dc.onmessage = e => {
-          var msg = JSON.parse(e.data);
-          console.log('received message over data channel:' + msg);
-      };
-      this.dc.onclose = () => {
-        this.remoteStream.getVideoTracks()[0].stop();
-        console.log('The Data Channel is Closed');
-      };
+      // this.dc.onmessage = e => {
+      //     var msg = JSON.parse(e.data);
+      //     console.log('received message over data channel:' + msg);
+      // };
+      // this.dc.onclose = () => {
+      //   this.remoteStream.getVideoTracks()[0].stop();
+      //   console.log('The Data Channel is Closed');
+      // };
   }
   setDescription = offer => this.pc.setLocalDescription(offer)
   // send the offer to a server to be forwarded to the other peer
@@ -118,13 +118,13 @@ export default class MediaBridge extends React.Component {
     };
     this.pc.ondatachannel = e => {
         // data channel
-        this.dc = e.channel;
-        this.setupDataHandlers();
-        this.sendData({
-          peerMediaStream: {
-            video: this.localStream.getVideoTracks()[0].enabled
-          }
-        });
+        // this.dc = e.channel;
+        // this.setupDataHandlers();
+        // this.sendData({
+        //   peerMediaStream: {
+        //     video: this.localStream.getVideoTracks()[0].enabled
+        //   }
+        // });
         //sendData('hello');
     };
     // attach local media to the peer connection

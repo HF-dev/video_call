@@ -23,10 +23,7 @@ app.use('/bundle.js' ,(req, res) => res.sendFile(__dirname + '/public/bundle.js'
 app.use('/bundle.js.map' ,(req, res) => res.sendFile(__dirname + '/public/bundle.js.map') );
 
 
-app.use('/' , (req , res , next) =>{
-  
-  next() ;
-} , (req, res) => res.sendFile(__dirname + '/public/index.html'));
+app.use('/' , (req, res) => res.sendFile(__dirname + '/public/index.html'));
 app.use(favicon('./public/favicon.ico'));
 // Switch off the default 'X-Powered-By: Express' header
 app.disable('x-powered-by');
